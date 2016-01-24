@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+	<head>	
+		<title>TEE Reference Site</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Fjord+One' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{% static 'css/postedit.css' %}">
+	</head>
+
+	<body>
+<body>
+    <div class="page-header">
+        <h1><a href="/">TEE Reference Site</a></h1>
+        {% if user.is_authenticated %}
+            <a href="{% url 'post_new' %}" <button type="button" class="btn btn-default btn-sm" style="float:right"><span class="glyphicon glyphicon-plus"; style=""></span> New Post </button></a>
+            <a href="{% url 'post_draft_list' %}"><button type="button" class="btn btn-default btn-sm" style="float:right"><span class="glyphicon glyphicon-edit"></span> Un-published posts</button></a>
+            <p class="top-menu"; style="font-size:12px;">Hello {{ user.username }}<small>(<a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>)</small></p>
+        {% else %}
+        <a href="{% url 'django.contrib.auth.views.login' %}" <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-lock"></span> Login </button></span></a>
+        {% endif %}
+
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+	</body>
+</html>
